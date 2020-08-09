@@ -187,7 +187,9 @@ void ofApp::audioIn(float * input, int bufferSize, int nChannels){
 }
 
 void ofApp::exit(){
-    processAudio = false;
+	processAudio = false;
+	ofSoundStreamStop();
+	ofSoundStreamClose();
 }
 
 //--------------------------------------------------------------
@@ -212,7 +214,7 @@ void ofApp::keyPressed(int key){
 
                 //Update the plots
                 classLikelihoodsPlot.setup( 60 * 5, pipeline.getNumClasses() );
-                classLikelihoodsPlot.setRanges(0,1);
+                classLikelihoodsPlot.setRanges(0,1, false, false, false);
             }else infoText = "WARNING: Failed to train pipeline";
             break;
         case 's':
